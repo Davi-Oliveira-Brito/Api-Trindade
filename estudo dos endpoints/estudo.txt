@@ -94,7 +94,7 @@ response
 
 
 
-(7º caso de uso) /GET  /produto/busca?
+(7º caso de uso) /GET  /produto/:id
 
 response
 [

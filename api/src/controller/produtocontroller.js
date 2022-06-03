@@ -1,5 +1,5 @@
 // Functions
-import { inserirProduto, inserirImagem, alterarProduto, consultarProduto } from "../repository/produtorepository.js";
+import { inserirProduto, inserirImagem, alterarProduto, consultarProduto, consultarCategoria } from "../repository/produtorepository.js";
 
 // Multer
 import multer from "multer";
@@ -71,6 +71,20 @@ server.put('/produto/:id', async (req, resp) => {
     }
 });
 
+server.get('/produto/:categoria', async (req,resp) => {
+    try{
+        const categoria = req.params.categoria;
+        const resposta = await consultarCategoria(categoria);
+        resp.send({x:resposta});
+    }
+    catch(err){
+        resp.send({
+
+            erro:err.message
+        })
+    }
+})
+
 server.get('/produto/:id', async (req,resp) => {
     try {
 
@@ -85,5 +99,6 @@ server.get('/produto/:id', async (req,resp) => {
     }
 })
 
-console.log();
+
+
 export default server;

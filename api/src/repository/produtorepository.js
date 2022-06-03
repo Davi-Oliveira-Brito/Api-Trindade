@@ -48,3 +48,16 @@ export async function consultarProduto(id){
 
     return resposta;
 }
+
+export async function consultarCategoria(categoria){
+    const comando = `
+    SELECT	id_produto			id,
+		nm_produto  		nome,
+        vl_preco			preco,
+        ds_categoria			categoria
+  FROM 	tb_produto
+ WHERE ds_categoria = ?`;
+
+    const [resposta] = await con.query (comando, [categoria]);
+    return resposta;
+}
