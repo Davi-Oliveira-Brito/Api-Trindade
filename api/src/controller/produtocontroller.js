@@ -85,4 +85,5 @@ server.get('/produto/:id', async (req,resp) => {
     }
 })
 
+console.log();
 export default server;
