@@ -1,0 +1,93 @@
+
+(1º caso de uso)/POST       /funcionario/login
+
+request body
+{
+    "email": "",
+    "senha": "",
+}
+response(200)
+{
+    "id": 0,
+    "email":"",
+    "nome":""
+}
+
+|||||||||||||||||||||||||||||||||||||||||||||||
+
+(2º caso de uso) /POST  /filme/
+request body
+{
+    "funcionario":1,
+    "nome":"",
+    "preco":0.0,
+    "categoria":"",
+
+}
+
+response
+{
+    "id":1,
+    "nome":"",
+    "sinopse":"",
+    "avaliação":0.0,
+    "lançamento":"2020-10-00",
+    "disponivel": true,
+    "usuario": 0
+}
+|||||||||||||||||||||||||||||||||||||||||||||||
+
+(2.1º caso de uso) /PUT  /produto/:id/imagem
+request body (form)
+{
+    "imagem": ""
+}
+
+response (204)
+ --sem conteudo
+
+|||||||||||||||||||||||||||||||||||||||||||||||
+
+(3º caso de uso) /PUT  /produto/:id
+
+request body
+{
+    "nome":"",
+    "preço":0.0,
+    "categoria":""
+}
+
+response (204)
+-- sem conteúdo
+
+|||||||||||||||||||||||||||||||||||||||||||||||
+
+(4º caso de uso) /DELETE  /produto/:id
+
+response (204)
+
+|||||||||||||||||||||||||||||||||||||||||||||||
+
+(5º caso de uso) /GET  /produto
+
+response
+[
+    "id":1,
+    "nome":"",
+    "preço":0.0,
+    "categoria":""
+]
+
+|||||||||||||||||||||||||||||||||||||||||||||||
+
+(6º caso de uso) /GET  /produto/busca?categoria
+
+response
+[
+   { 
+        "id":1,
+        "nome":"",
+        "preço":0.0,
+        "categoria":""
+    }
+]
