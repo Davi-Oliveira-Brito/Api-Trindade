@@ -31,7 +31,7 @@ UPDATE tb_produto
  -- editar produto
  UPDATE tb_produto
    SET nm_produto		= 'macarronada ao molho',
-	   vl_preco			= 10.99,
+	     vl_preco			= 10.99,
        ds_categoria		= 'salgado'
  WHERE id_produto = 1;
  
@@ -46,6 +46,13 @@ SELECT	id_produto			id,
 		nm_produto  		nome,
         vl_preco			preco,
         ds_categoria		categoria
-  FROM 	tb_filme
+  FROM 	tb_produto
  WHERE ds_categoria = 'salgado';
  
+ -- consultar produto por id
+SELECT	id_produto			id,
+		nm_produto  		nome,
+        vl_preco			preco,
+        ds_categoria		categoria
+  FROM 	tb_produto
+ WHERE id_produto = 2;

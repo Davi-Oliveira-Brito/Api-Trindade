@@ -21,7 +21,7 @@ request body
     "funcionario":1,
     "nome":"",
     "preco":0.0,
-    "categoria":"",
+    "categoria":""
 
 }
 

@@ -1,11 +1,9 @@
 import { con } from "./connection.js";
 
 export async function inserirProduto (produto) {
-    const comando = `
-        insert into 
+    const comando = `insert into 
             tb_produto(id_funcionario, nm_produto, vl_preco, ds_categoria)
-            values(?, ?, ?, ?);
-    `;
+            values(?, ?, ?, ?)`;
 
     const [resp] = await con.query(comando, [produto.funcionario, produto.nome, produto.preco, produto.categoria]);
 
@@ -36,4 +34,17 @@ export async function alterarProduto(produto, id) {
     const [resposta] = await con.query(comando, [produto.nome, produto.preco, produto.categoria, id]);
 
     return resposta.affectedRows;
+}
+
+export async function consultarProduto(id){
+    const comando = `SELECT	id_produto			id,
+    nm_produto  		nome,
+    vl_preco			preco,
+    ds_categoria		categoria
+        FROM 	tb_produto
+        WHERE id_produto = ?`;
+
+    const [resposta] = await con.query (comando, [id]);
+
+    return resposta;
 }
