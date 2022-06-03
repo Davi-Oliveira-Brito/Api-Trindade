@@ -91,3 +91,17 @@ response
         "categoria":""
     }
 ]
+
+
+
+(7º caso de uso) /GET  /produto/busca?
+
+response
+[
+   { 
+        "id":1,
+        "nome":"",
+        "preço":0.0,
+        "categoria":""
+    }
+]
