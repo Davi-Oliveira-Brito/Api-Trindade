@@ -33,7 +33,7 @@ UPDATE tb_produto
    SET nm_produto		= 'macarronada ao molho',
 	   vl_preco			= 10.99,
        ds_categoria		= 'salgado'
- WHERE id_filme = 1;
+ WHERE id_produto = 1;
  
 
 -- excluir produto

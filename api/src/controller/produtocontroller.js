@@ -1,5 +1,5 @@
 // Functions
-import { inserirProduto, inserirImagem } from "../repository/produtorepository.js";
+import { inserirProduto, inserirImagem, alterarProduto } from "../repository/produtorepository.js";
 
 // Multer
 import multer from "multer";
@@ -49,6 +49,25 @@ server.post('/produto/:id/imagem', upload.single('imagem'), async (req, resp) =>
         resp.send({
             error: err.message
         });
+    }
+});
+
+
+// Rota responsavel por alterar um produto
+server.put('/produto/:id', async (req, resp) => {
+    try {
+        const produto = req.body;
+        const { id } = req.params;
+
+        const resposta = await alterarProduto(produto, id);
+    
+        resp.send({
+            x: resposta
+        });
+    }catch(error) {
+        resp.send({
+            error: error.message
+        })      
     }
 });
 
