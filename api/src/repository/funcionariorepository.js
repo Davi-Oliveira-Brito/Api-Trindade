@@ -11,8 +11,7 @@ export async function login (user)
         and ds_senha			= 	?
     `;
 
-    if(!user.email || !user.senha) throw new Error("Todos os campos são obrigatorios!");
-
     const [ loggedUser ] = await con.query(comando, [user.email, user.senha]); 
+    
     return loggedUser[0];
 }

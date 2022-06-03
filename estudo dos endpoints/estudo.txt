@@ -15,7 +15,7 @@ response(200)
 
 |||||||||||||||||||||||||||||||||||||||||||||||
 
-(2º caso de uso) /POST  /filme/
+(2º caso de uso) /POST  /produto
 request body
 {
     "funcionario":1,
