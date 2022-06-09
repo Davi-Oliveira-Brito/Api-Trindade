@@ -1,5 +1,5 @@
 // Functions
-import { inserirProduto, inserirImagem, alterarProduto, consultarProduto, consultarCategoria } from "../repository/produtorepository.js";
+import { inserirProduto, inserirImagem, alterarProduto, consultarProduto, consultarCategoria, consultarTodosProdutos, deletarProduto } from "../repository/produtorepository.js";
 
 // Multer
 import multer from "multer";
@@ -99,6 +99,31 @@ server.get('/produto/:id', async (req,resp) => {
     }
 })
 
+
+
+server.delete('/produto/delete/:id', async (req,resp) =>{
+    try {
+        const id = req.params;
+        const resposta = deletarProduto(id);
+        resp.send({x:resposta})
+
+    } catch (error) {
+        resp.status(404).send({
+            error:error.message
+        })
+    }
+})
+
+server.get('/produto', async (req,resp) => {
+    try{
+        const resposta = await consultarTodosProdutos();
+        resp.send({resposta})
+    } catch (error){
+        resp.status(404).send({
+            error:error.message
+        })
+    }
+})
 
 
 export default server;

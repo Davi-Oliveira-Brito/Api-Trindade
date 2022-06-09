@@ -1,5 +1,5 @@
 
-(1º caso de uso)/POST       /funcionario/login
+(1º caso de uso)/POST       /funcionario/login  X
 
 request body
 {
@@ -15,7 +15,7 @@ response(200)
 
 |||||||||||||||||||||||||||||||||||||||||||||||
 
-(2º caso de uso) /POST  /produto
+(2º caso de uso) /POST  /produto   X
 request body
 {
     "funcionario":1,
@@ -37,7 +37,7 @@ response
 }
 |||||||||||||||||||||||||||||||||||||||||||||||
 
-(2.1º caso de uso) /PUT  /produto/:id/imagem
+(2.1º caso de uso) /PUT  /produto/:id/imagem  X
 request body (form)
 {
     "imagem": ""
@@ -48,7 +48,7 @@ response (204)
 
 |||||||||||||||||||||||||||||||||||||||||||||||
 
-(3º caso de uso) /PUT  /produto/:id
+(3º caso de uso) /PUT  /produto/:id  X
 
 request body
 {
@@ -68,7 +68,7 @@ response (204)
 
 |||||||||||||||||||||||||||||||||||||||||||||||
 
-(5º caso de uso) /GET  /produto
+(5º caso de uso) /GET  /produto     
 
 response
 [
@@ -80,7 +80,7 @@ response
 
 |||||||||||||||||||||||||||||||||||||||||||||||
 
-(6º caso de uso) /GET  /produto/busca?categoria
+(6º caso de uso) /GET  /produto/:categoria   X
 
 response
 [
@@ -94,7 +94,7 @@ response
 
 
 
-(7º caso de uso) /GET  /produto/:id
+(7º caso de uso) /GET  /produto/:id     X
 
 response
 [

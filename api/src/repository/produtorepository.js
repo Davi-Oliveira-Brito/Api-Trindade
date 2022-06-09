@@ -61,3 +61,17 @@ export async function consultarCategoria(categoria){
     const [resposta] = await con.query (comando, [categoria]);
     return resposta;
 }
+
+export async function deletarProduto(id){
+    const comando =`DELETE FROM tb_produto
+    WHERE id_produto= ?`
+    
+    const [resposta] = await con.query (comando, [id]);
+    return resposta.affectedRows;
+}
+
+export async function consultarTodosProdutos(){
+    const comando = `select * from tb_produto`
+    const [resposta] = await con.query (comando);
+    return resposta;
+}
