@@ -1,5 +1,5 @@
 // Functions
-import { inserirProduto, inserirImagem, alterarProduto, consultarProduto, consultarCategoria, consultarTodosProdutos, deletarProduto } from "../repository/produtorepository.js";
+import { inserirProduto, inserirImagem, alterarProduto, consultarProdutoId, consultarCategoria, consultarTodosProdutos, deletarProduto, buscarPorNome } from "../repository/produtorepository.js";
 
 // Multer
 import multer from "multer";
@@ -17,24 +17,25 @@ server.post('/produto', async (req, resp) => {
         if(!produto.funcionario ||
         !produto.nome        ||
         !produto.preco       ||
-        !produto.categoria)
+        !produto.categoria   ||
+        !produto.descricao)
         throw new Error('Todos os campos são necessarios!');
 
         const resposta = await inserirProduto(produto);
         
         resp.send({
-            x: resposta
+            insertedId: resposta
         })
-    } catch (err) {
-        resp.send({
-            error: err.message
+    } catch (error) {
+        resp.status(400).send({
+            error: error.message
         })
     }
 });
 
 
 // Rota responsavel por inserir imagem em determinado produto
-server.post('/produto/:id/imagem', upload.single('imagem'), async (req, resp) => {
+server.put('/produto/:id/imagem', upload.single('imagem'), async (req, resp) => {
     try {
         const id = req.params.id;
         const imagem = req.file.path;
@@ -69,6 +70,18 @@ server.put('/produto/:id', async (req, resp) => {
             error: error.message
         })      
     }
+});    
+
+server.get('/produto/q', async (req,resp) => {
+    try{
+        const nome = req.query.nome
+        const resposta = await buscarPorNome(nome);
+        resp.send(resposta)
+    } catch (error){
+        resp.status(404).send({
+            error:error.message
+        })
+    }
 });
 
 server.get('/produto/:categoria', async (req,resp) => {
@@ -76,54 +89,54 @@ server.get('/produto/:categoria', async (req,resp) => {
         const categoria = req.params.categoria;
         const resposta = await consultarCategoria(categoria);
         resp.send({x:resposta});
-    }
-    catch(err){
+    }    
+    catch(error){
         resp.send({
 
-            erro:err.message
-        })
-    }
-})
+            erro:error.message
+        })    
+    }        
+})    
 
-server.get('/produto/:id', async (req,resp) => {
-    try {
-
-    const id = req.params.id;
-    const resposta = await consultarProduto(id);
-    resp.send({x:resposta})
-
-    } catch (error) {
-        resp.send({
-            error: error.message
-        })
-    }
-})
-
+server.get('/produto/buscarid/:id', async (req,resp) => {
+    try{
+        const { id } = req.params;
+        const resposta = await consultarProdutoId(id);
+        
+        resp.send(resposta)
+    } catch (error){
+        resp.status(404).send({
+            error:error.message
+        })    
+    }    
+})    
 
 
 server.delete('/produto/delete/:id', async (req,resp) =>{
     try {
-        const id = req.params;
+        const { id } = req.params;
         const resposta = deletarProduto(id);
         resp.send({x:resposta})
 
     } catch (error) {
         resp.status(404).send({
             error:error.message
-        })
-    }
-})
+        })    
+    }    
+})    
+
 
 server.get('/produto', async (req,resp) => {
     try{
         const resposta = await consultarTodosProdutos();
-        resp.send({resposta})
+        resp.send(resposta)
     } catch (error){
         resp.status(404).send({
             error:error.message
-        })
-    }
-})
+        })    
+    }    
+})    
+
 
 
 export default server;

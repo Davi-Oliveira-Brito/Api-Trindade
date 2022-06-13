@@ -12,11 +12,11 @@ server.post('/funcionario/login', async (req, resp) => {
         if(!user.email || !user.senha) throw new Error("Todos os campos são obrigatorios!");
 
         const loggedUser = await login(user);
-            
+        console.log(loggedUser);
         resp.status(200).send({
-            "id": loggedUser.id,
-            "email":loggedUser.email,
-            "nome":loggedUser.nome
+            id: loggedUser.id,
+            email: loggedUser.email,
+            nome: loggedUser.nome
         });
 
     }catch(err) {
