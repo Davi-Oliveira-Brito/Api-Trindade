@@ -9,10 +9,12 @@ server.post('/funcionario/login', async (req, resp) => {
     try{
         const user = req.body;
         
-        if(!user.email || !user.senha) throw new Error("Todos os campos são obrigatorios!");
+        if(!user.email || !user.senha) 
+            throw new Error("Todos os campos são obrigatorios!");          
 
         const loggedUser = await login(user);
-        console.log(loggedUser);
+        if(!loggedUser)
+            throw new Error("Credenciais Inválidas");
         resp.status(200).send({
             id: loggedUser.id,
             email: loggedUser.email,
