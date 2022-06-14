@@ -88,7 +88,7 @@ server.get('/produto/:categoria', async (req,resp) => {
     try{
         const categoria = req.params.categoria;
         const resposta = await consultarCategoria(categoria);
-        resp.send({x:resposta});
+        resp.send(resposta);
     }    
     catch(error){
         resp.send({
