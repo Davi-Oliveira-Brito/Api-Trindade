@@ -96,6 +96,7 @@ export async function buscarPorNome(nome){
 	  nm_produto		nome,
        vl_preco		    preco,
        ds_categoria	    categoria,
+       img_produto      imagem,
        ds_descricao	    descricao
   FROM tb_produto
  WHERE nm_produto			like ?;

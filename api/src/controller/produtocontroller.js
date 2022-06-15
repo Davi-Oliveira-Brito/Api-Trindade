@@ -60,6 +60,16 @@ server.put('/produto/:id', async (req, resp) => {
         const produto = req.body;
         const { id } = req.params;
 
+        console.log(produto);
+
+        if(!produto.nome        ||
+            !produto.preco       ||
+            !produto.categoria   ||
+            !produto.descricao ||
+            !id){
+                throw new Error('Todos os campos são necessarios!');
+            }
+
         const resposta = await alterarProduto(produto, id);
     
         resp.send({
