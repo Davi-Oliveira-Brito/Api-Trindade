@@ -13,12 +13,12 @@ const server = Router();
 server.post('/produto', async (req, resp) => {
     try {
         const produto = req.body;
-    
+
         if(!produto.funcionario ||
         !produto.nome        ||
         !produto.preco       ||
         !produto.categoria   ||
-        !produto.descricao)
+        !produto.descricao )
         throw new Error('Todos os campos são necessarios!');
 
         const resposta = await inserirProduto(produto);
@@ -27,7 +27,7 @@ server.post('/produto', async (req, resp) => {
             insertedId: resposta
         })
     } catch (error) {
-        resp.status(400).send({
+        resp.send({
             error: error.message
         })
     }
